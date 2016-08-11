@@ -614,15 +614,15 @@ def print_menu():
             manager.name,
             's' if len(manager.updates) > 1 else ''))
 
-        if manager.update_all_cli() and manager.updates:
-            print("Upgrade all | {} terminal=false refresh=true".format(
-                manager.update_all_cli()))
-
         for pkg_info in manager.updates:
             print((
-                "{name} {installed_version} → {latest_version} | "
+                "--{name} {installed_version} → {latest_version} | "
                 "{cli} terminal=false refresh=true".format(
                     cli=manager.update_cli(pkg_info['name']),
                     **pkg_info)).encode('utf-8'))
+
+        if manager.update_all_cli() and manager.updates:
+            print("Upgrade all | {} terminal=false refresh=true".format(
+                manager.update_all_cli()))
 
 print_menu()
